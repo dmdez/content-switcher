@@ -140,7 +140,7 @@
 
         return {
             'destroy': destroy
-        }
+        };
     }
 
     $.fn.contentSwitcher = function(args) {
