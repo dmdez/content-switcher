@@ -1,24 +1,25 @@
 (function($) {
 
-    var defaults = {
-        'header'       : '> h3', 
-        'activeIndex'  : 0, 
-        'onChange'     : null,
-        'headerAsHtml' : false,
-        'toggleHeaders': false,
-        'tabLabel'     : true,
-        'classNames': {
-            'content'  : 'tabbed-content',
-            'active'   : 'active',
-            'tabs'     : 'tabs',
-            'tabItems' : 'tab-items',
-            'tabLabel' : 'tab-label button button-dropdown',
-            'headers'  : 'header-inactive'
-        }
-    };
+    function ContentSwitcher(element, options) {
+        
+        var defaults = {
+            'header'       : '> h3', 
+            'activeIndex'  : 0, 
+            'onChange'     : null,
+            'headerAsHtml' : false,
+            'toggleHeaders': false,
+            'tabLabel'     : true,
+            'classNames': {
+                'content'  : 'tabbed-content',
+                'active'   : 'active',
+                'tabs'     : 'tabs',
+                'tabItems' : 'tab-items',
+                'tabLabel' : 'tab-label button button-dropdown',
+                'headers'  : 'header-inactive'
+            }
+        };
 
-    function ContentSwitcher(element, settings) {
-
+        var settings = jQuery.extend(true, defaults, options);
         var $container = $(element);
         var $panels = $container.children();
         var $tabListWrapper = $('<div />');
@@ -144,10 +145,9 @@
     }
 
     $.fn.contentSwitcher = function(args) {
-        var settings = jQuery.extend(true, defaults, args);
         return this.each(function(){
             if (undefined == $(this).data('contentSwitcher')) {
-                var plugin = new ContentSwitcher(this, settings);
+                var plugin = new ContentSwitcher(this, args);
                 $(this).data('contentSwitcher', plugin);
             }
         });
