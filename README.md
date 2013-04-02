@@ -42,3 +42,6 @@ $('.container').contentSwitcher({
     }
 });
 ```
+
+## Demo
+http://dmmendez.github.com/content-switcher/
