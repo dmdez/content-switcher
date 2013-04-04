@@ -48,8 +48,9 @@
         var parsePanels = function(index) {
             var $panel = $(this);
             var $header = $panel.find(settings.header);
+            var id = $panel.attr("id");
             var $tabLink = $('<a />', {
-                'href': "#" + $panel.attr("id"),
+                'href': "#" + id,
             });
             var $tabLi = $('<li />', {
                 'class': $panel.attr('class') || ''
@@ -106,6 +107,12 @@
                     : $header.text()
 
             ).on('click', tabClick);
+            
+            $('[data-toggle-content="' + id + '"]').on('click', function(event) {
+                $panel.removeClass(settings.classNames.headers);
+                $tabLink.click();
+                event.preventDefault();
+            });
 
             $tabLi.append($tabLink);
             $tabList.append($tabLi);
