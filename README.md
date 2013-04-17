@@ -4,6 +4,8 @@ Most web apps these days seem to have the need for content-changing components s
 
 What this plugin does is take a block of semantic content and adds some events and markup to give that HTML the ability to swap out those 3 main components with just css.
 
+*Works well with http://www.zeptojs.com*
+
 ## Markup
 ```
 <div class="container">

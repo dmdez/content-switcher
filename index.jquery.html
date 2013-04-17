@@ -27,7 +27,7 @@
             <div class="main-sample">
                 <h2>Responsive Example</h2>
                 <p><a href="#porter" data-toggle-content="porter">Trigger Porter</a></p>
-                <div class="beer" id="beer">
+                <div class="beer">
                     <section id="stout">
                         <h3>Stout</h3>
                         <div class="content-container">
@@ -159,10 +159,12 @@
         <script src="contentSwitcher.js"></script>
         <script>
             (function($) {
-                
-                var cs = contentSwitcher(document.getElementById('beer'), {
+                $('.beer').contentSwitcher({
                     'toggleHeaders': true
                 });
+                $('.food').contentSwitcher({ tabLabel: false });
+                $('.clothes').contentSwitcher({ tabLabel: false  });
+                $('.gadgets').contentSwitcher();
             })(jQuery);
         </script>
 

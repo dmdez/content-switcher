@@ -1,14 +1,73 @@
-(function($) {
+(function() {
 
-    function ContentSwitcher(element, options) {
+    function extend(destination, source) {
+      for (var property in source) {
+        if (typeof source[property] === "object") {
+          destination[property] = destination[property] || {};
+          arguments.callee(destination[property], source[property]);
+        } else {
+          destination[property] = source[property];
+        }
+      }
+      return destination;
+    }
+    
+    HTMLElement.prototype.hasClass = function(className) {
+        return new RegExp(' ' + className + ' ').test(' ' + this.className + ' ');
+    };
+    
+    HTMLElement.prototype.addClass = function(className) {
+        var elem = this;
+        if (!elem.hasClass(className)) {
+            elem.className += ' ' + className;
+        }
+    };
+    
+    HTMLElement.prototype.toggleClass = function(className) {
+        var elem = this;
+        var newClass = ' ' + elem.className.replace( /[\t\r\n]/g, ' ' ) + ' ';
+        if (elem.hasClass(className)) {
+            while (newClass.indexOf(' ' + className + ' ') >= 0 ) {
+                newClass = newClass.replace( ' ' + className + ' ' , ' ' );
+            }
+            elem.className = newClass.replace(/^\s+|\s+$/g, '');
+        } else {
+            elem.className += ' ' + className;
+        }
+    };
+
+    HTMLElement.prototype.removeClass = function(remove) {
+        var newClassName = "";
+        var i;
+        var classes = this.className.split(" ");
+        for(i = 0; i < classes.length; i++) {
+            if(classes[i] !== remove) {
+                newClassName += classes[i] + " ";
+            }
+        }
+        this.className = newClassName;
+    };
+    
+    HTMLElement.prototype.getChildren = function() {
+        var children = this.childNodes;
+        var _c = [];
+        for ( var i=0; i < children.length; i++) {
+            if ( children[i].nodeType != 3 )
+                _c.push(children[i]);
+        }
+        return _c;
+    }
+    
+    function ContentSwitcher(container, options) {
         
         var defaults = {
-            'header'       : '> h3', 
+            'header'       : 'h3', 
             'activeIndex'  : 0, 
             'onChange'     : null,
             'headerAsHtml' : false,
             'toggleHeaders': false,
             'tabLabel'     : true,
+            'prefix'       : '',
             'classNames': {
                 'content'  : 'tabbed-content',
                 'active'   : 'active',
@@ -19,145 +78,70 @@
             }
         };
 
-        var settings = jQuery.extend(true, defaults, options);
-        var $container = $(element);
-        var $panels = $container.children();
-        var $tabListWrapper = $('<div />');
-        var $tabList = $('<ul></ul>');
-        var $tabLabel = $('<a />', {
-            'href' : "javascript:void(0);",
-            'class': settings.classNames.tabLabel
-        });
+        var settings = extend(defaults, options);
+        
+        for ( var key in settings.classNames ) {
+            settings.classNames[key] = settings.prefix + settings.classNames[key];
+        }
+
+        var panels = container.getChildren();
+        var tabListWrapper = document.createElement('div');
+        var tabList = document.createElement('ul');
+        var tabLabel = document.createElement('a');
         var tabs = [];
         var activeHeader;
 
         var removeActiveState = function() {
-            $container.removeClass(settings.classNames.active); 
+            container.removeClass(settings.classNames.active);
         };
 
         var labelToggleActive = function(event) {
             event.stopPropagation();
-            $container.toggleClass(settings.classNames.active);
+            container.toggleClass(settings.classNames.active);
             return false;
         };
 
         var destroy = function() {
-            $tabListWrapper.remove();
+            tabListWrapper.parentNode.removeChild(tabListWrapper);
         };
-
-        var parsePanels = function(index) {
-            var $panel = $(this);
-            var $header = $panel.find(settings.header);
-            var id = $panel.attr("id");
-            var $tabLink = $('<a />', {
-                'href': "#" + id,
-            });
-            var $tabLi = $('<li />', {
-                'class': $panel.attr('class') || ''
-            });
-
-            var isCurrentHeader = function() {
-                return (activeHeader != undefined) && activeHeader == index;
-            };
-
-            var tabClick = function(event) {
-                var $this = $(this);
-                var activeClass = settings.classNames.active;
-
-                $panels
-                    .removeClass(activeClass);
-                
-                if ( settings.toggleHeaders && !isCurrentHeader())
-                    $panel.removeClass(settings.classNames.headers);
-
-                $tabList
-                    .children()
-                    .removeClass(activeClass);
-
-                $panel
-                    .addClass(activeClass);
-
-                $tabLi
-                    .addClass(activeClass);
-                
-                if ( settings.tabLabel)
-                    $tabLabel
-                        .text($this.text());
-
-                if(settings.onChange)
-                    settings.onChange.call(this, $panel);
-
-                activeHeader = index;
-
-                event.preventDefault();
-            };
-
-            $header.on('click', function() {
-
-                if ( settings.toggleHeaders && isCurrentHeader())
-                    $panel.toggleClass(settings.classNames.headers);
-
-                $tabLink.click();
-                
-            });
-
-            $tabLink.html(
-                settings.headerAsHtml 
-                    ? $header.html() 
-                    : $header.text()
-
-            ).on('click', tabClick);
+        
+        var parsePanel = function(panel, index) {
             
-            $('[data-toggle-content="' + id + '"]').on('click', function(event) {
-                $panel.removeClass(settings.classNames.headers);
-                $tabLink.click();
-                event.preventDefault();
-            });
+        }
 
-            $tabLi.append($tabLink);
-            $tabList.append($tabLi);
-
-            tabs.push($tabLi);
-        };
-
-        $tabListWrapper
+        tabListWrapper
             .addClass(settings.classNames.tabItems);
         
         if ( settings.tabLabel)
-            $tabListWrapper.append($tabLabel);
+            tabListWrapper.appendChild(tabLabel);
 
-        $tabListWrapper
-            .append($tabList);
+        tabListWrapper
+            .appendChild(tabList);
 
-        $container
-            .addClass(settings.classNames.tabs)
-            .prepend($tabListWrapper);
+        container.addClass(settings.classNames.tabs);
+        container.insertBefore(tabListWrapper, container.firstChild);
 
-        $('html').on('click', removeActiveState);
+        document.onclick = removeActiveState;
 
         if ( settings.tabLabel)
-            $tabLabel.on('click', labelToggleActive);
+            tabLabel.onclick = labelToggleActive;
 
-        $panels
-            .each(parsePanels)
-            .addClass(settings.classNames.content);
+        
+        for ( var i=0; i < panels.length; i++ ) {
+            parsePanel(panels[i]);
+            panels[i].addClass(settings.classNames.content);    
+        }        
 
-        $(tabs[settings.activeIndex])
-            .find('a')
-            .click();
+        //$(tabs[settings.activeIndex])
+          //  .find('a')
+            //.click();
 
         return {
             'destroy': destroy
-        }
+        };
     }
+    
+    window.contentSwitcher = ContentSwitcher;
 
-    $.fn.contentSwitcher = function(args) {
-        return this.each(function(){
-            if (undefined == $(this).data('contentSwitcher')) {
-                var plugin = new ContentSwitcher(this, args);
-                $(this).data('contentSwitcher', plugin);
-            }
-        });
-    };
 
-})(jQuery);
+})();
