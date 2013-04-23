@@ -39,30 +39,30 @@ a {
     float: right;
     width: 48%; } }
 @media screen and (max-width: 30em) {
-  .beer .tab-items {
+  #beer .tab-items {
     position: relative; }
-    .beer .tab-items ul {
+    #beer .tab-items ul {
       top: 2em;
       left: 0;
       width: 100%;
       position: absolute;
       background: rgba(255, 255, 255, 0.9);
       display: none; }
-      .beer .tab-items ul li a {
+      #beer .tab-items ul li a {
         display: block;
         padding: .3em;
         color: #000; }
-        .beer .tab-items ul li a:hover {
+        #beer .tab-items ul li a:hover {
           background: #999;
           color: #fff; }
-    .beer .tab-items .tab-label {
+    #beer .tab-items .tab-label {
       display: block;
       background: #333;
       color: #fff;
       padding: .5em .5em;
       border-radius: .5em;
       position: relative; }
-      .beer .tab-items .tab-label:before {
+      #beer .tab-items .tab-label:before {
         content: ' ';
         display: block;
         position: absolute;
@@ -74,172 +74,172 @@ a {
         border-width: .5em .5em 0;
         border-style: solid;
         border-color: #fff transparent; }
-  .beer.active ul {
+  #beer.active ul {
     display: block; }
-  .beer .tabbed-content {
+  #beer .tabbed-content {
     display: none; }
-    .beer .tabbed-content.active {
+    #beer .tabbed-content.active {
       display: block; }
-    .beer .tabbed-content h3 {
+    #beer .tabbed-content h3 {
       display: none; } }
 @media screen and (min-width: 30.0625em) and (max-width: 50em) {
-  .beer .tab-items {
+  #beer .tab-items {
     display: none; }
-  .beer .tabbed-content h3 {
+  #beer .tabbed-content h3 {
     background: #eee;
     padding: .3em;
     cursor: pointer;
     margin: 0 0 1px;
     font-weight: normal;
     color: #333; }
-  .beer .tabbed-content .content-container {
+  #beer .tabbed-content .content-container {
     overflow: hidden; }
-  .beer .tabbed-content .content {
+  #beer .tabbed-content .content {
     display: none; }
-  .beer .tabbed-content.active .content {
+  #beer .tabbed-content.active .content {
     display: block; }
-  .beer .tabbed-content.header-inactive .content {
+  #beer .tabbed-content.header-inactive .content {
     display: none; }
-  .beer .tabbed-content:last-child h3 {
+  #beer .tabbed-content:last-child h3 {
     border-radius: 0 0 .5em .5em; }
-  .beer .tabbed-content:last-child.active h3 {
+  #beer .tabbed-content:last-child.active h3 {
     border-radius: 0; }
-  .beer .tabbed-content.active h3 {
+  #beer .tabbed-content.active h3 {
     background: #333;
     color: #fff; }
-  .beer .tabbed-content.header-inactive h3 {
+  #beer .tabbed-content.header-inactive h3 {
     background: #eee;
     color: #333; }
-  .beer .tabbed-content.header-inactive:last-child h3 {
+  #beer .tabbed-content.header-inactive:last-child h3 {
     border-radius: 0 0 .5em .5em; }
-  .beer .tab-items + .tabbed-content h3 {
+  #beer .tab-items + .tabbed-content h3 {
     border-radius: .5em .5em 0 0; } }
 @media screen and (min-width: 50.0625em) {
-  .beer .tab-label {
+  #beer .tab-label {
     display: none; }
-  .beer .tabbed-content {
+  #beer .tabbed-content {
     display: none;
     padding: .5em 0 1em;
     border-color: #333;
     border-style: solid;
     border-width: 5px 0 0;
     border-radius: 0 1em 0 0; }
-    .beer .tabbed-content.active {
+    #beer .tabbed-content.active {
       display: block; }
-    .beer .tabbed-content h3 {
+    #beer .tabbed-content h3 {
       display: none; }
-  .beer .tab-items ul {
+  #beer .tab-items ul {
     *zoom: 1; }
-    .beer .tab-items ul:after {
+    #beer .tab-items ul:after {
       content: "";
       display: table;
       clear: both; }
-    .beer .tab-items ul li {
+    #beer .tab-items ul li {
       float: left;
       margin: 0 1px 0 0; }
-    .beer .tab-items ul li.active a {
+    #beer .tab-items ul li.active a {
       background: #333;
       color: #fff; }
-    .beer .tab-items ul a {
+    #beer .tab-items ul a {
       display: block;
       padding: .5em;
       background: #eee;
       color: #333; }
-    .beer .tab-items ul li:first-child a {
+    #beer .tab-items ul li:first-child a {
       border-radius: .5em 0 0 0; }
-    .beer .tab-items ul li:last-child a {
+    #beer .tab-items ul li:last-child a {
       border-radius: 0 .5em 0 0; } }
-.food .tab-label {
+#food .tab-label {
   display: none; }
-.food .tabbed-content {
+#food .tabbed-content {
   display: none;
   padding: .5em 0 1em;
   border-color: #333;
   border-style: solid;
   border-width: 5px 0 0;
   border-radius: 0 1em 0 0; }
-  .food .tabbed-content.active {
+  #food .tabbed-content.active {
     display: block; }
-  .food .tabbed-content h3 {
+  #food .tabbed-content h3 {
     display: none; }
-.food .tab-items ul {
+#food .tab-items ul {
   *zoom: 1; }
-  .food .tab-items ul:after {
+  #food .tab-items ul:after {
     content: "";
     display: table;
     clear: both; }
-  .food .tab-items ul li {
+  #food .tab-items ul li {
     float: left;
     margin: 0 1px 0 0; }
-  .food .tab-items ul li.active a {
+  #food .tab-items ul li.active a {
     background: #333;
     color: #fff; }
-  .food .tab-items ul a {
+  #food .tab-items ul a {
     display: block;
     padding: .5em;
     background: #eee;
     color: #333; }
-  .food .tab-items ul li:first-child a {
+  #food .tab-items ul li:first-child a {
     border-radius: .5em 0 0 0; }
-  .food .tab-items ul li:last-child a {
+  #food .tab-items ul li:last-child a {
     border-radius: 0 .5em 0 0; }
 
-.clothes .tab-items {
+#clothes .tab-items {
   display: none; }
-.clothes .tabbed-content h3 {
+#clothes .tabbed-content h3 {
   background: #eee;
   padding: .3em;
   cursor: pointer;
   margin: 0 0 1px;
   font-weight: normal;
   color: #333; }
-.clothes .tabbed-content .content-container {
+#clothes .tabbed-content .content-container {
   overflow: hidden; }
-.clothes .tabbed-content .content {
+#clothes .tabbed-content .content {
   display: none; }
-.clothes .tabbed-content.active .content {
+#clothes .tabbed-content.active .content {
   display: block; }
-.clothes .tabbed-content.header-inactive .content {
+#clothes .tabbed-content.header-inactive .content {
   display: none; }
-.clothes .tabbed-content:last-child h3 {
+#clothes .tabbed-content:last-child h3 {
   border-radius: 0 0 .5em .5em; }
-.clothes .tabbed-content:last-child.active h3 {
+#clothes .tabbed-content:last-child.active h3 {
   border-radius: 0; }
-.clothes .tabbed-content.active h3 {
+#clothes .tabbed-content.active h3 {
   background: #333;
   color: #fff; }
-.clothes .tabbed-content.header-inactive h3 {
+#clothes .tabbed-content.header-inactive h3 {
   background: #eee;
   color: #333; }
-.clothes .tabbed-content.header-inactive:last-child h3 {
+#clothes .tabbed-content.header-inactive:last-child h3 {
   border-radius: 0 0 .5em .5em; }
-.clothes .tab-items + .tabbed-content h3 {
+#clothes .tab-items + .tabbed-content h3 {
   border-radius: .5em .5em 0 0; }
 
-.gadgets .tab-items {
+#gadgets .tab-items {
   position: relative; }
-  .gadgets .tab-items ul {
+  #gadgets .tab-items ul {
     top: 2em;
     left: 0;
     width: 100%;
     position: absolute;
     background: rgba(255, 255, 255, 0.9);
     display: none; }
-    .gadgets .tab-items ul li a {
+    #gadgets .tab-items ul li a {
       display: block;
       padding: .3em;
       color: #000; }
-      .gadgets .tab-items ul li a:hover {
+      #gadgets .tab-items ul li a:hover {
         background: #999;
         color: #fff; }
-  .gadgets .tab-items .tab-label {
+  #gadgets .tab-items .tab-label {
     display: block;
     background: #333;
     color: #fff;
     padding: .5em .5em;
     border-radius: .5em;
     position: relative; }
-    .gadgets .tab-items .tab-label:before {
+    #gadgets .tab-items .tab-label:before {
       content: ' ';
       display: block;
       position: absolute;
@@ -251,13 +251,13 @@ a {
       border-width: .5em .5em 0;
       border-style: solid;
       border-color: #fff transparent; }
-.gadgets.active ul {
+#gadgets.active ul {
   display: block; }
-.gadgets .tabbed-content {
+#gadgets .tabbed-content {
   display: none; }
-  .gadgets .tabbed-content.active {
+  #gadgets .tabbed-content.active {
     display: block; }
-  .gadgets .tabbed-content h3 {
+  #gadgets .tabbed-content h3 {
     display: none; }
 
 @media screen and (min-width: 36em) {

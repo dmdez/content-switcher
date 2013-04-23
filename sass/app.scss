@@ -173,24 +173,24 @@ a { text-decoration: none; }
 }
 
 @media screen and (max-width: 30em) {
-    .beer {
+    #beer {
         @include dropdown
     }
 }
 @media screen and (min-width: 30.0625em) and (max-width: 50em) {
-    .beer {
+    #beer {
         @include accordian;
     }
 }
 @media screen and (min-width: 50.0625em) {
-    .beer {
+    #beer {
         @include tabs;
     }
 }
 
-.food { @include tabs; }
-.clothes { @include accordian; }
-.gadgets { @include dropdown; }
+#food { @include tabs; }
+#clothes { @include accordian; }
+#gadgets { @include dropdown; }
 
 @media screen and (min-width: 36em) {
     .body {
