@@ -7,7 +7,7 @@ What this plugin does is take a block of semantic content and adds some events a
 ## Markup
 ```
 <div class="container">
-    <section id="..">
+    <section id="porter">
         <h3>Header</h3>
         <div class="content">
             ...
@@ -42,3 +42,11 @@ $('.container').contentSwitcher({
     }
 });
 ```
+
+## Trigger with a data attribute
+```
+<a href="#porter" data-toggle-content="porter">Trigger Porter Section</a>
+```
+
+## Demo
+http://dmmendez.github.com/content-switcher/
