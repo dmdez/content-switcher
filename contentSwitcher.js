@@ -50,7 +50,7 @@
             var $header = $panel.find(settings.header);
             var id = $panel.attr("id");
             var $tabLink = $('<a />', {
-                'href': "#" + id,
+                'href': "#" + id
             });
             var $tabLi = $('<li />', {
                 'class': $panel.attr('class') || ''
