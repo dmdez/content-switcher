@@ -44,4 +44,4 @@ $('.container').contentSwitcher({
 ```
 
 ## Demo
-http://dmmendez.github.com/content-switcher/
+http://dmdez.github.com/content-switcher/
